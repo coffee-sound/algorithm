@@ -1,4 +1,4 @@
-const N = 10;
+const N = 20;
 const TOO_BIGGER_NUM = N * 10000;
 
 const genereteData = () => {
@@ -38,7 +38,7 @@ const merge = (left, right) => {
         left = [...left, TOO_BIGGER_NUM];
         right = [...right, TOO_BIGGER_NUM];
         let result = [];
-        while (rightIndex < right.length - 1 || leftIndex < left.length - 1) {
+        while (leftIndex < left.length - 1 || rightIndex < right.length - 1) {
             const numL = left[leftIndex], numR = right[rightIndex];
             if (numL < numR) {
                 result = [...result, numL];
