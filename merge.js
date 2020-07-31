@@ -1,4 +1,4 @@
-const N = 16;
+const N = 10;
 const TOO_BIGGER_NUM = N * 10000;
 
 const genereteData = () => {
@@ -23,7 +23,7 @@ const divide = (data) => {
 };
 
 const merge = (left, right) => {
-    if (typeof left[0] === 'number' && typeof right[0] === 'number') {
+    if (typeof left === 'object' && typeof left[0] === 'number' && typeof right === 'object' && typeof right[0] === 'number') {
         if (left.length <= 2) {
             const reverse = (numbers) => {
                 if (numbers.length === 2 && numbers[0] > numbers[1]) {
@@ -50,6 +50,12 @@ const merge = (left, right) => {
         }
         return result;
     } else {
+        if (typeof left[0] === 'number') {
+            return merge(left, merge(right[0], right[1]));
+        }
+        if (typeof right[0] === 'number') {
+            return merge(merge(left[0], left[1]), right);
+        }
         return merge(merge(left[0], left[1]), merge(right[0], right[1]));
     }
 };
