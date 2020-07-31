@@ -1,4 +1,4 @@
-const N = 10;
+const N = 8;
 
 const genereteData = () => {
     let numbers = [...Array(N)].map((val, index) => index + 1);
@@ -11,5 +11,16 @@ const genereteData = () => {
     return data;
 };
 
+const divide = (data) => {
+    if (data.length <= 2) {
+        return data;
+    }
+    const half = Math.floor(data.length / 2);
+    const left = data.slice(0, half);
+    const right = data.slice(half);
+    return [[...divide(left)], [...divide(right)]];
+};
+
 const data = genereteData();
-console.log(data);
+const division = divide(data);
+console.log(division);
