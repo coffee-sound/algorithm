@@ -23,7 +23,7 @@ const divide = (data) => {
 };
 
 const merge = (left, right) => {
-    if (typeof left === 'object' && typeof left[0] === 'number' && typeof right === 'object' && typeof right[0] === 'number') {
+    if (typeof left[0] === 'number' && typeof right[0] === 'number') {
         if (left.length <= 2) {
             const reverse = (numbers) => {
                 if (numbers.length === 2 && numbers[0] > numbers[1]) {
