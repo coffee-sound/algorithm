@@ -5,14 +5,15 @@ import java.util.Random;
 
 public class Merge {
 
-    public static final int N = 20;
+    public static final int N = 16;
     
     public static void main(String[] args) {
         int[] data = generateData();
-        output(data);
+        output(data); // 生成したデータ配列を表示
         Division division = new Division(data);
-        division.merge();
-        output(division.getNumbers());
+        division.output(); // 分けられた後の配列を表示
+        division.merge(); // マージする
+        output(division.getNumbers()); // 結果を出力
     }
 
     private static int[] generateData() {
@@ -31,14 +32,14 @@ public class Merge {
     }
 
     private static void output(int[] data) {
-        System.out.print("[");
+        System.out.print("[ ");
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i]);
             if (i < data.length - 1) {
                 System.out.print(", ");
             }
         }
-        System.out.println("]");
+        System.out.println(" ]");
     }
 }
 
@@ -81,6 +82,10 @@ class Division {
     }
 
     public void output() {
+        this.output(true);
+    }
+
+    private void output(boolean hasLine) {
         System.out.print("[ ");
         if (this.hasNumbers()) {
             for (int i = 0; i < this.numbers.length; i++) {
@@ -90,11 +95,14 @@ class Division {
                 }
             }
         } else {
-            left.output();
+            left.output(false);
             System.out.print(", ");
-            right.output();
+            right.output(false);
         }
         System.out.print(" ]");
+        if (hasLine) {
+            System.out.println();
+        }
     }
 
     public void merge() {
