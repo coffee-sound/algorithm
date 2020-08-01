@@ -12,6 +12,5 @@ def merge(left, right):
             result.append(left[indexes[0]] if left[indexes[0]] < right[indexes[1]] else right[indexes[1]])
             indexes[0 if left[indexes[0]] < right[indexes[1]] else 1] += 1
         return result
-    else:
-        return merge(left, merge(right[0], right[1])) if type(left[0]) is int else (merge(merge(left[0], left[1]), right) if type(right[0]) is int else merge(merge(left[0], left[1]), merge(right[0], right[1])))
+    return merge(left, merge(right[0], right[1])) if type(left[0]) is int else (merge(merge(left[0], left[1]), right) if type(right[0]) is int else merge(merge(left[0], left[1]), merge(right[0], right[1])))
 print(merge(divide(data)[0], divide(data)[1]))
