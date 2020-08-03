@@ -81,6 +81,18 @@ class Division {
         return numbers;
     }
 
+    public int[] getNumbersWithHugeNumber() {
+        if (this.numbers == null) {
+            return null;
+        }
+        int[] updateData = new int[this.numbers.length + 1];
+        for (int i = 0; i < this.numbers.length; i++) {
+            updateData[i] = this.numbers[i];
+        }
+        updateData[this.numbers.length] = Integer.MAX_VALUE;
+        return updateData;
+    }
+
     public void output() {
         this.output(true);
     }
@@ -108,8 +120,8 @@ class Division {
     public void merge() {
         if (left.hasNumbers() && right.hasNumbers()) {
             int leftIndex = 0, rightIndex = 0;
-            int[] leftData = addTooBig(left.getNumbers());
-            int[] rightData = addTooBig(right.getNumbers());
+            int[] leftData = left.getNumbersWithHugeNumber();
+            int[] rightData = right.getNumbersWithHugeNumber();
             int[] result = new int[leftData.length + rightData.length - 2];
             for (int i = 0; i < result.length; i++) {
                 int numL = leftData[leftIndex], numR = rightData[rightIndex];
@@ -132,14 +144,5 @@ class Division {
             }
             this.merge();
         }
-    }
-
-    private static int[] addTooBig(int[] data) {
-        int[] updateData = new int[data.length + 1];
-        for (int i = 0; i < data.length; i++) {
-            updateData[i] = data[i];
-        }
-        updateData[data.length] = Integer.MAX_VALUE;
-        return updateData;
     }
 }
